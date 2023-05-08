@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<div class="bodyDash">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card shadow-2-strong" style="background-color: #ffffff;">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table  mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault" />
+                                            </div>
+                                        </th>
+                                        <th scope="col">Id User</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Date Of Birth</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Creation Date</th>
+                                        <th scope="col">Account Status</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Admin Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of jsonData">
+                                        <th scope="row">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault1" checked />
+                                            </div>
+                                        </th>
+                                        <td>{{data.userId}}</td>
+                                        <td>{{data.email}}</td>
+                                        <td>{{data.firstName}}</td>
+                                        <td>{{data.lastName}}</td>
+                                        <td>{{data.dateOfBirth}}</td>
+                                        <td>{{data.role}}</td>
+                                        <td>{{data.createdAt}}</td>
+                                        <td>{{data.status}}</td>
+                                        <td>{{data.gender}}</td>
+                                        <td>
+                                            <button (click)="activateAccount(data.userId)" style="margin: 5px;" type="button" class="btn btn-success btn-sm px-3">
+                                                Activate
+                                            </button>
+                                            <button (click)="BanAccount(data.userId)" style="margin: 5px;" type="button" class="btn btn-warning btn-sm px-3">
+                                                Ban
+                                            </button>
+                                            <button (click)="deleteUser(data.userId)" style="margin: 5px;" type="button" class="btn btn-danger btn-sm px-3">
+                                                <i class="fas fa-user-times" style="color: #ffffff;"></i>
+                                            </button>
+                                            <button (click)="takeCurrentId(data.userId)" style="margin: 5px;" type="button" class="btn btn-primary btn-sm px-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <i class="fas fa-wrench" style="color: #ffffff;"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Change Role</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <label for="select">Select Role :</label>
+            <select [(ngModel)]="newRole" id="select" class="form-select" aria-label="Default select example">
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+                <option value="ORGANIZER">ORGANIZER</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+          <button (click)="changeRole()" type="button" class="btn btn-success">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>

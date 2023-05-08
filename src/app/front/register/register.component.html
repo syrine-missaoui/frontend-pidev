@@ -1,0 +1,115 @@
+<app-navbar></app-navbar>
+<div class="containerr">
+  <form #f="ngForm" (ngSubmit)="register()">
+<!-- 2 column grid layout with text inputs for the first and last names -->
+    <h1 style="padding-bottom: 10%; display: flex; justify-content: center;">Sign Up</h1>
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <label class="form-label"  for="firstName">firstName</label>
+          <input #fname="ngModel"[(ngModel)]="signUpCredentials.firstName" type="text" id="firstName" name="firstName" class="form-control" required />
+          <div *ngIf="fname.invalid && fname.touched"  class ="alert alert-danger">firstName input required!</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-outline">
+          <label class="form-label" for="lastName">Last name</label>
+          <input #lname="ngModel" [(ngModel)]="signUpCredentials.lastName" type="text" id="lastName"  name="lastName" class="form-control" required />
+          <div *ngIf="lname.invalid && lname.touched"  class ="alert alert-danger">lastName input required! </div>
+      </div>
+    </div>
+    </div>
+  
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="email" >Email Address</label>
+      <input #ivv="ngModel"  [(ngModel)]="signUpCredentials.email" type="email" id="email" name="email" class="form-control"  placeholder="example@example.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+      <div *ngIf="ivv.errors?.['required'] && ivv.touched"  class ="alert alert-danger">email input required! </div>
+      <div *ngIf="ivv.errors?.['pattern'] && ivv.touched"  class ="alert alert-danger">email must be like "example@something.com" </div>
+    </div>
+
+    <!-- Password input -->
+
+    
+    <div class="form-outline mb-4">
+      <label class="form-label" for=" dateOfBirth">dateOfBirth</label>
+      <input #iy="ngModel"[(ngModel)]="signUpCredentials.dateOfBirth" type="date" [min]="mindate" [max]="maxdate" id=" dateOfBirth" name="dateOfBirth"class="form-control" required/>
+      <div *ngIf="iy.invalid && iy.touched"  class ="alert alert-danger">dateOfBirth input required! </div>
+     </div>
+
+     <div class="form-outline mb-4">
+      <label class="form-label" for=" contactNumber">Contact Number</label>
+      <input  #in="ngModel" [(ngModel)]="signUpCredentials.contactNumber" type="text" id=" contactNumber" name="contactNumber"class="form-control" required maxlength="8"/>
+      <div *ngIf="in.invalid && in.touched"  class ="alert alert-danger">contactNumber input required! </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="password">Password</label>
+      <input #ibb="ngModel" [(ngModel)]="signUpCredentials.password" type="{{hidden ? 'password' : 'text'}}" id="password" name ="password" class="form-control" required/>
+      <div *ngIf="ibb.invalid && ibb.touched"  class ="alert alert-danger">password input required! </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="confirmPassword">Confirm Password</label>
+      <input #li="ngModel"[(ngModel)]="signUpCredentials.confirmPassword" type="{{hidden ? 'password' : 'text'}}" id="confirmPassword" name="confirmPassword"class="form-control" required/>
+      <div *ngIf="li.invalid && li.touched"  class ="alert alert-danger">confirmPassword input required! </div>
+    </div>
+
+    <div class="form-check d-flex  mb-4">
+      <input class="form-check-input me-2" type="checkbox" (change)="hidden = !hidden" />
+      <label class="form-check-label" for="form2Example33">
+        Show Password
+      </label>
+    </div>
+
+
+    <label class="form-label" >Gender: </label><br>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="gender"  value="male" [(ngModel)]="signUpCredentials.gender" checked>
+      <label class="form-check-label" >male</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="gender"  value="female" [(ngModel)]="signUpCredentials.gender" >
+      <label class="form-check-label" >Female</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="gender" value="other" [(ngModel)]="signUpCredentials.gender" >
+      <label class="form-check-label" > other</label>
+    </div>
+
+   
+  
+    <!-- Checkbox -->
+    <div class="form-check d-flex justify-content-center mb-4">
+      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+      <label class="form-check-label" for="form2Example33">
+        Subscribe to our newsletter
+      </label>
+    </div>
+  
+    <!-- Submit button -->
+    <button type="submit" [disabled]="f.invalid" class="btn btn-primary btn-block mb-4">Sign up</button>
+  
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>or sign up with:</p>
+      <button type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+  
+      <button type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-google"></i>
+      </button>
+  
+      <button type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-twitter"></i>
+      </button>
+  
+      <button type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-github"></i>
+      </button>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>

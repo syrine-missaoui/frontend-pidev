@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<div class="containerr">
+  <form #f="ngForm" (ngSubmit)="login()">
+    <!-- Email input -->
+    <h1 style="padding-bottom: 10%; display: flex; justify-content: center;">Sign In to Your Account</h1>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="email">Email address:</label>
+     <input #mail="ngModel"  type="email" [(ngModel)]="Logininfo.email" id="email" name="email" class="form-control" required>
+     <div *ngIf="mail.invalid && mail.touched" class="alert alert-danger">required email input</div>
+    </div>
+  
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Password</label>
+      <input #pass="ngModel" type="{{hidden ? 'password' : 'text'}}" [(ngModel)]="Logininfo.password" name="password" id="password" class="form-control" required>
+     <div *ngIf="pass.invalid && pass.touched " class="alert alert-danger">required password input</div>
+    </div>
+  
+    <!-- 2 column grid layout for inline styling -->
+    <div class="row mb-4">
+      <div class="col d-flex justify-content-center">
+        <!-- Checkbox -->
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" (change)="hidden = !hidden" id="form2Example31"  />
+          <label class="form-check-label" for="form2Example31"> Show Password </label>
+        </div>
+      </div>
+  
+      <div class="col">
+        <!-- Simple link -->
+        <a routerLink="/forgotpassword">Forgot password?</a>
+      </div>
+    </div>
+  
+    <!-- Submit button -->
+    <button type="submit" [disabled]="f.invalid" class="btn btn-primary btn-block mb-4">Sign in</button>
+  
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>Not a member? <a href="/register">Register</a></p>
+      <p>or sign up with:</p>
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+  
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="fab fa-google"></i>
+      </button>
+  
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="fab fa-twitter"></i>
+      </button>
+  
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="fab fa-github"></i>
+      </button>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>
